@@ -24,18 +24,18 @@ export const FloatingNav = ({
 
   const [visible, setVisible] = useState(false);
 
-  useMotionValueEvent(scrollYProgress, 'change', (current) => {
-    // Check if current is not undefined and is a number
+
+  useMotionValueEvent(scrollYProgress, 'change', (current: number) => {
     if (typeof current === 'number') {
-      let direction = current! - scrollYProgress.getPrevious()!;
+      const direction = current - scrollYProgress.getPrevious()!;
 
       if (scrollYProgress.get() < 0.01) {
-        setVisible(false);
+        setVisible(true); // Visible en la parte superior
       } else {
         if (direction < 0) {
-          setVisible(true);
+          setVisible(true); // Visible al desplazarse hacia arriba
         } else {
-          setVisible(true);
+          setVisible(true); // Oculto al desplazarse hacia abajo
         }
       }
     }
